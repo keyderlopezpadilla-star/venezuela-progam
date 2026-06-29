@@ -1,0 +1,76 @@
+{
+  "common": {
+    "appName": "Venezuela Solidaria",
+    "tagline": "Transparent and verifiable aid for Venezuela",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "retry": "Retry",
+    "search": "Search",
+    "menu": "Menu",
+    "close": "Close",
+    "open": "Open",
+    "learnMore": "Learn more",
+    "getStarted": "Get started",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "continue": "Continue",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "save": "Save",
+    "saved": "Saved",
+    "yes": "Yes",
+    "no": "No",
+    "or": "or",
+    "and": "and"
+  },
+  "nav": {
+    "home": "Home",
+    "donate": "Donate",
+    "volunteer": "Volunteer",
+    "help": "Request help",
+    "transparency": "Transparency",
+    "track": "Track",
+    "campaigns": "Campaigns",
+    "about": "About us",
+    "contact": "Contact",
+    "dashboard": "My dashboard",
+    "login": "Log in",
+    "register": "Sign up",
+    "logout": "Log out"
+  },
+  "home": {
+    "hero": {
+      "badge": "Official humanitarian aid platform",
+      "title": "Every grain counts. Every life matters.",
+      "subtitle": "We connect international donations with families affected by emergencies in Venezuela. Total transparency, real-time tracking and verifiable delivery.",
+      "cta_donate": "Donate now",
+      "cta_volunteer": "Become a volunteer",
+      "cta_help": "Request help",
+      "trust": "Audited · Transparent · Verifiable"
+    },
+    "stats": {
+      "raised": "Raised",
+      "delivered": "Delivered",
+      "families": "Families helped",
+      "volunteers": "Active volunteers",
+      "warehouses": "Collection centers",
+      "cities": "Cities reached"
+    }
+  },
+  "donate": {
+    "title": "Donate",
+    "subtitle": "Your donation is immediately assigned to a verified campaign."
+  },
+  "transparency": {
+    "title": "Transparency dashboard",
+    "subtitle": "Because trust is built with evidence."
+  },
+  "track": {
+    "title": "Track your donation",
+    "subtitle": "Enter your code to see the status in real time."
+  },
+  "footer": {
+    "rights": "© {year} Venezuela Solidaria. All rights reserved."
+  }
+}

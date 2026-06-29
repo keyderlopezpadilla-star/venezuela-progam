@@ -1,0 +1,30 @@
+{
+  "common": {
+    "appName": "Venezuela Solidaria",
+    "tagline": "Ajuda transparente e verificável para a Venezuela"
+  },
+  "nav": {
+    "home": "Início",
+    "donate": "Doar",
+    "volunteer": "Voluntariado",
+    "help": "Pedir ajuda",
+    "transparency": "Transparência",
+    "track": "Rastrear",
+    "campaigns": "Campanhas",
+    "about": "Sobre",
+    "contact": "Contato",
+    "dashboard": "Meu painel",
+    "login": "Entrar",
+    "register": "Cadastrar",
+    "logout": "Sair"
+  },
+  "home": {
+    "hero": {
+      "title": "Cada grão conta. Cada vida importa.",
+      "subtitle": "Conectamos doações internacionais com famílias afetadas por emergências na Venezuela.",
+      "cta_donate": "Doar agora",
+      "cta_volunteer": "Quero ser voluntário",
+      "cta_help": "Solicitar ajuda"
+    }
+  }
+}
