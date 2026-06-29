@@ -1,37 +1,4 @@
 import createNextIntlPlugin from 'next-intl/plugin';
-import withPWAInit from '@ducanh2912/next-pwa';
-
-const withPWA = withPWAInit({
-  dest: 'public',
-  cacheOnFrontEndNav: true,
-  aggressiveFrontEndNavCaching: true,
-  reloadOnOnline: true,
-  disable: false,
-  workboxOptions: {
-    maximumFileSizeToCacheInBytes: 8 * 1024 * 1024,
-    globPatterns: ['**/*.{js,css,html,svg,png,ico,webp,woff2}'],
-    runtimeCaching: [
-      {
-        urlPattern: ({ url }) => url.pathname.startsWith('/api/transparency'),
-        handler: 'StaleWhileRevalidate',
-        options: { cacheName: 'transparency-cache' },
-      },
-      {
-        urlPattern: ({ url }) => url.pathname.startsWith('/api/campaigns'),
-        handler: 'StaleWhileRevalidate',
-        options: { cacheName: 'campaigns-cache' },
-      },
-      {
-        urlPattern: ({ request }) => request.destination === 'image',
-        handler: 'CacheFirst',
-        options: {
-          cacheName: 'images-cache',
-          expiration: { maxEntries: 200, maxAgeSeconds: 30 * 24 * 60 * 60 },
-        },
-      },
-    ],
-  },
-});
 
 const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts');
 
@@ -90,4 +57,4 @@ const nextConfig = {
   },
 };
 
-export default withPWA(withNextIntl(nextConfig));
+export default withNextIntl(nextConfig);
