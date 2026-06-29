@@ -1,49 +1,42 @@
-import { NextResponse } from 'next/server';
-import { locales } from '@/i18n/request';
+import type { MetadataRoute } from 'next';
 import { db } from '@/lib/db';
 
 export const revalidate = 3600;
 
-export async function GET() {
+const locales = ['es', 'en', 'pt'];
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-  const campaigns = await db.campaign.findMany({
-    where: { status: 'ACTIVE' },
-    select: { slug: true, updatedAt: true },
-  });
+
+  let campaigns: { slug: string; updatedAt: Date }[] = [];
+  try {
+    campaigns = await db.campaign.findMany({
+      where: { status: 'ACTIVE' },
+      select: { slug: true, updatedAt: true },
+    });
+  } catch {
+    // DB not available during build — return static routes only
+  }
 
   const routes = ['', '/donate', '/volunteer', '/help', '/transparency', '/track', '/campaigns', '/about', '/privacy', '/terms'];
 
-  const urls = routes.flatMap((r) =>
+  const urls: MetadataRoute.Sitemap = routes.flatMap((r) =>
     locales.map((l) => ({
-      loc: `${base}/${l}${r}`,
-      lastmod: new Date().toISOString(),
-      changefreq: 'weekly',
+      url: `${base}/${l}${r}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
       priority: r === '' ? 1.0 : 0.7,
     }))
   );
 
-  const campaignUrls = campaigns.flatMap((c) =>
+  const campaignUrls: MetadataRoute.Sitemap = campaigns.flatMap((c) =>
     locales.map((l) => ({
-      loc: `${base}/${l}/campaigns/${c.slug}`,
-      lastmod: c.updatedAt.toISOString(),
-      changefreq: 'daily',
+      url: `${base}/${l}/campaigns/${c.slug}`,
+      lastModified: c.updatedAt,
+      changeFrequency: 'daily' as const,
       priority: 0.6,
     }))
   );
 
-  const xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${[...urls, ...campaignUrls]
-  .map(
-    (u) => `<url>
-  <loc>${u.loc}</loc>
-  <lastmod>${u.lastmod}</lastmod>
-  <changefreq>${u.changefreq}</changefreq>
-  <priority>${u.priority}</priority>
-</url>`
-  )
-  .join('\n')}
-</urlset>`;
-
-  return new NextResponse(xml, { headers: { 'Content-Type': 'application/xml' } });
+  return [...urls, ...campaignUrls];
 }
