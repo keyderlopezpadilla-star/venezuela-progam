@@ -43,6 +43,8 @@ export const helpRequestSchema = z.object({
   consent: z.literal(true, { errorMap: () => ({ message: 'Debes aceptar el consentimiento' }) }),
 });
 
+export type HelpRequest = z.infer<typeof helpRequestSchema>;
+
 export const volunteerSchema = z.object({
   bio: z.string().min(20, 'Cuéntanos un poco sobre ti').max(1000),
   skills: z.array(z.string()).min(1, 'Selecciona al menos una habilidad'),
@@ -56,6 +58,8 @@ export const volunteerSchema = z.object({
   emergencyPhone: z.string().optional(),
   consent: z.literal(true, { errorMap: () => ({ message: 'Debes aceptar la verificación' }) }),
 });
+
+export type Volunteer = z.infer<typeof volunteerSchema>;
 
 export const newsletterSchema = z.object({
   email: z.string().email('Email inválido'),
